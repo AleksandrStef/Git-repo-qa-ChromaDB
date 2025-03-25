@@ -143,7 +143,7 @@ class GitHubRepoHandler:
         """
         try:
             # Convert file path to GitHub path format
-            github_path = file_path.replace('\\', '/')
+            github_path = file_path.replace(os.sep, '/')
             
             # Get file content from GitHub API
             file_content = self.github_repo.get_contents(github_path, ref=self.branch)
@@ -170,7 +170,7 @@ class GitHubRepoHandler:
             return {
                 "name": os.path.basename(file_path),
                 "path": file_path,
-                "github_url": f"{self.repo_url}/blob/{self.branch}/{file_path.replace('\\', '/')}",
+                "github_url": f"{self.repo_url}/blob/{self.branch}/{file_path.replace(os.sep, '/')}",
                 "error": str(e)
             }
     
